@@ -7,10 +7,10 @@ public class Data {
     private int dia;
     private int mes;
     private int ano;
+    Scanner sc = new Scanner(System.in);
 
     // Construtor padrão
     public Data() {
-        Scanner sc = new Scanner(System.in);
         boolean valido = false;
         while (!valido) {
             try {
@@ -72,7 +72,6 @@ public class Data {
     }
 
     public void entraDia() {
-        Scanner sc = new Scanner(System.in);
         boolean valido = false;
         while (!valido) {
             try {
@@ -86,13 +85,12 @@ public class Data {
                 }
             } catch (Exception e) {
                 System.out.println("Entrada inválida, tente novamente.");
-                sc.next(); // Limpar o buffer do scanner
+                sc.next(); 
             }
         }
     }
 
     public void entraMes() {
-        Scanner sc = new Scanner(System.in);
         boolean valido = false;
         while (!valido) {
             try {
@@ -106,13 +104,12 @@ public class Data {
                 }
             } catch (Exception e) {
                 System.out.println("Entrada inválida, tente novamente.");
-                sc.next(); // Limpar o buffer do scanner
+                sc.next(); 
             }
         }
     }
 
     public void entraAno() {
-        Scanner sc = new Scanner(System.in);
         boolean valido = false;
         while (!valido) {
             try {
@@ -126,7 +123,7 @@ public class Data {
                 }
             } catch (Exception e) {
                 System.out.println("Entrada inválida, tente novamente.");
-                sc.next(); // Limpar o buffer do scanner
+                sc.next();
             }
         }
     }
