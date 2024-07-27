@@ -1,15 +1,15 @@
 import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Data {
+    //definindo atributos
     private int dia;
     private int mes;
     private int ano;
     Scanner sc = new Scanner(System.in);
 
-    // Construtor padrão
+    //construtor que permite o usuário digitar os valores e inicializar os atributos
     public Data() {
         boolean valido = false;
         while (!valido) {
@@ -21,21 +21,22 @@ public class Data {
                 System.out.print("Digite o ano: ");
                 int a = sc.nextInt();
                 if (validaData(d, m, a)) {
+                    //inicializando os atributos
                     this.dia = d;
                     this.mes = m;
                     this.ano = a;
-                    valido = true;
+                    valido = true; //termina o loop se os valores forem válidos
                 } else {
                     System.out.println("Data inválida, tente novamente.");
                 }
             } catch (Exception e) {
                 System.out.println("Entrada inválida, tente novamente.");
-                sc.next(); // Limpar o buffer do scanner
+                sc.next(); //limpar o buffer do scanner
             }
         }
     }
 
-    // Construtor com parâmetros
+    //construtor com parâmetros
     public Data(int d, int m, int a) {
         if (validaData(d, m, a)) {
             this.dia = d;
@@ -46,7 +47,7 @@ public class Data {
         }
     }
 
-    // Métodos de entrada
+    //métodos de entrada com parâmetros
     public void entraDia(int d) {
         if (validaData(d, this.mes, this.ano)) {
             this.dia = d;
@@ -71,6 +72,7 @@ public class Data {
         }
     }
 
+    //métodos de entrada sem parâmetros
     public void entraDia() {
         boolean valido = false;
         while (!valido) {
@@ -128,7 +130,7 @@ public class Data {
         }
     }
 
-    // Métodos de retorno
+    //métodos de retorno de propriedades
     public int retDia() {
         return this.dia;
     }
@@ -141,23 +143,23 @@ public class Data {
         return this.ano;
     }
 
-    // Método para mostrar a data no formato dd/mm/aaaa
+    //método para mostrar a data no formato dd/mm/aaaa
     public String mostra1() {
         return String.format("%02d/%02d/%04d", this.dia, this.mes, this.ano);
     }
 
-    // Método para mostrar a data no formato dd/mesPorExtenso/ano
+    //método para mostrar a data no formato dd/mesPorExtenso/ano
     public String mostra2() {
         String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
         return String.format("%02d/%s/%04d", this.dia, meses[this.mes - 1], this.ano);
     }
 
-    // Método para verificar se o ano é bissexto
+    //método para verificar se o ano é bissexto
     public boolean bissexto() {
         return (this.ano % 4 == 0 && this.ano % 100 != 0) || (this.ano % 400 == 0);
     }
 
-    // Método para calcular os dias transcorridos no ano até a data
+    //método para calcular os dias transcorridos no ano até a data
     public int diasTranscorridos() {
         int[] diasPorMes = {31, (bissexto() ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         int dias = 0;
@@ -168,20 +170,20 @@ public class Data {
         return dias;
     }
 
-    // Método para apresentar a data atual
+    //método para apresentar a data atual
     public void apresentaDataAtual() {
         DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
         System.out.println("Data atual: " + df.format(new Date()));
     }
 
-    // Método para validar a data
+    //método para validar a data
     private boolean validaData(int d, int m, int a) {
         if (m < 1 || m > 12) return false;
         int[] diasPorMes = {31, (bissexto(a) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         return d >= 1 && d <= diasPorMes[m - 1];
     }
 
-    // Método auxiliar para verificar se um ano é bissexto
+    //método auxiliar para verificar se um ano é bissexto
     private boolean bissexto(int ano) {
         return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
     }
